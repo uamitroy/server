@@ -16,6 +16,13 @@ interface Server {
      public static function setDiskPath(string $diskPath) : object;
 
      /**
+       * @param int $precision
+       * @method setPrecision
+       * @return object
+       */
+     public static function setPrecision(int $precision) : object;
+
+     /**
        * @param bool $originanl
        * @method setRaw
        * @return object

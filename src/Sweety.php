@@ -9,10 +9,14 @@ use Exception;
 
 class Sweety implements Server{
    
-       /**
-        * @var bool $originanl
-        */
-       private static bool $originanl=FALSE;
+         /**
+          * @var $precision
+           */
+          private static $precision = 1;
+         /**
+	   * @var bool $originanl
+	   */
+	   private static bool $originanl=FALSE;
 	   
 	   /**
 	    * @var array $units
@@ -24,6 +28,16 @@ class Sweety implements Server{
 	    */
 	   private static string $diskPath; 
 	   
+	   /**
+	     * @param init $precision
+	     * @method setPrecision
+	     * @return object
+	     */
+	   public static function setPrecision( int $precision) : object {
+	       self::$precision = $precision;
+	       return new static;
+	   }
+
 	   /**
 	     * @param string $diskPath
 	     * @method setDiskPath
@@ -83,13 +97,30 @@ class Sweety implements Server{
 	   }
 
 	   /**
+	     * @param null
+	     * @method getUsedSpace
+	     * @return 
+	     */
+	   public static function getUsedSpace() {
+	       
+	       try {
+	          return round((100 - (self::getFreeSpace() / self::getTotalSpace()) * 100), self::$precision);
+	       } catch (Exception $e) {
+
+	          throw print($e->getMessage());
+
+	       }
+
+	   }
+
+	   /**
 	     * @param $diskBytes
 	     * @method getUnitsResolved
 	     * @return 
 	     */
 	   private static function getUnitsResolved($diskBytes) { 
-          
-          for($i = 0; $diskBytes >= 1024 && $i < count(self::$units) - 1; $i++ ) {
+	   
+	        for($i = 0; $diskBytes >= 1024 && $i < count(self::$units) - 1; $i++ ) {
 		  
 		      $diskBytes /= 1024;
 		  
