@@ -11,7 +11,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Sweety\\": "src/"
+            "BubbleGum\\": "src/"
         }
     }
 }
