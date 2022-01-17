@@ -1,4 +1,4 @@
-A php package to get you the serverv information
+A php package to get you the server information
 
 ## Install
 
